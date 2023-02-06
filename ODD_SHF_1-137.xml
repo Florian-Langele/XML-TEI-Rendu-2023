@@ -1,0 +1,1375 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE ODD_SHF_1-137[ 
+   <!ENTITY lien_froissart "https://www.dhi.ac.uk/onlinefroissart/browsey.jsp?f=b&amp;pb3=Tou_SHF_1-269&amp;pb2=P55_SHF_1-269&amp;GlobalWord=0&amp;div0=ms.f.transc.Chi-1&amp;panes=4&amp;GlobalMode=edition&amp;img3=&amp;disp2=shf&amp;disp3=shf&amp;div3=ms.f.transc.Tou&amp;div2=ms.f.transc.P55&amp;div1=ms.f.transc.NY4&amp;img0=&amp;disp0=shf&amp;disp1=shf&amp;pb1=NY4_SHF_1-269&amp;img2=&amp;pb0=Chi-1_SHF_1-269&amp;img1=&amp;GlobalShf=1-269">
+   <!ENTITY lien_tei "http://www.tei-c.org/ns/1.0">
+]>
+
+<TEI xmlns="http://www.tei-c.org/ns/1.0" xmlns:s="http://purl.oclc.org/dsdl/schematron"
+   xml:lang="fr">
+   <teiHeader>
+      <fileDesc>
+         <titleStmt>
+            <title type="short">ODD la Bataille de la Blanchetaque</title>
+            <title>Documentation pour l'encodage de la Bataille de la Blanchetaque en TEI issu de The Online Froissart</title>
+         </titleStmt>
+         <publicationStmt>
+            <p>ODD rédigée par Florian Langelé</p>
+         </publicationStmt>
+         <sourceDesc>
+            <p>Dérivé avec odd by example de <ref target="https://www.tei-c.org/Vault/P5/current/xml/tei/odd/p5subset.xml">base odd</ref></p>
+         </sourceDesc>
+      </fileDesc>
+   </teiHeader>
+   <text>
+      <!-- DOCUMENTATION -->
+      <body>
+         <div1>
+            <head>Guide de l'encodage de l'édition critique numérique des Chroniques de Jean
+               Froissart Livre I, la bataille de la Blanchetaque</head>
+            <div2>
+               <head>Origine du texte</head>
+               <div3>
+                  <head>Présentation de l'oeuvre originale</head>
+                  <p>L'encodage est réalisé pour le cours de XML TEI du Master 2 TNAH par Florian Langelé avec la supervision de Mme Segolène Albouy.</p>
+                  <p>L'ouvrage original encodé ici sont les Chroniques de Jean Froissart, historien contemporain de la première partie de la Guerre de Cents Ans. Les Chroniques sont l'une des plus grosses sources disponibles sur
+                  les événements qui survenus entre 1340 et 1380 dans le conflit. Jean Froissart est originaire des Flandres, il est donc plutôt proche du camps anglais. Ici le passage encodé décrit la bataille de Blanchetaque
+                  qui survient en 1346 peu de temps avant le désastre de Crécy. Il raconte la poursuite de l'armée d'Edouard III par Philippe VI, et la tentative de Godemar du Fay de s'interposer sur le gué de la Blanchetaque, qui se
+                  solde par une victoire de l'armée anglaise qui peut alors bien se disposer en attendant le gros de l'armée française.</p>
+               </div3>
+               <div3>
+                  <head>Présentation des témoins</head>
+                  <p>Comme indiqué dans le TEI Header nous avons ici 4 témoins différents reprenant le même passage des Chroniques. Ces témoins ont été tiré du site <ref target="&lien_froissart;">The Online Froissart</ref>.
+                     <list>
+                        <item>Paris ms. fr. 2655, c'est le manuscrit le plus ancien, estimé aux environs de 1400. C'est le témoin avec la langue la plus compréhensible.</item>
+                        <item>New York M804, manuscrit conservé à la Morgan Library il est estimé aux alentours de 1412-1415, il est très proche du témoin de Paris.</item>
+                        <item>Toulouse 511, témoin avec le plus différence avec les 3 autres dans la construction du récit avec d'énormes passages supplémentaires et d'autres complétements absents.</item>
+                        <item>Chicago f.37 (vol. 1), dernier manuscrit, également estimé le plus récent vers 1430. La langue est très différente des autres avec de nombreuses variantes orthographiques.</item>
+                  </list>
+                  </p>
+               </div3>
+            </div2>
+            <div2>
+               <head>Les balises de l'edition critique</head>
+               <div3>
+                  <head>Les balises app, rdg et lem</head>
+                  <p>Cette partie s'intéresse aux 3 balises essentielles structurant mon encodage numérique du texte.</p>
+                  <div4>
+                     <head>La balise fondamentale, la balise app</head>
+                     <p>La balise est utilisée pour indiquer des différences entre les témoins et peut expliquer avec <att>corresp</att> le type de ces variations, on doit placer <gi>app</gi> dans une balise qui pourrait contenir du texte.
+                     Ici elle est quasiment uniquement utilisée dans le <gi>p</gi> unique du body et est utilisée systématiquement quand il y avait une légère variation entre les témoins. J'ai découpé au 
+                        maximum les variations dans des <gi>app</gi> pour avoir une unique balise qui représente un type de variation exprimé par <att>corresp</att>. Les valeurs prises par cet argument
+                        sont défini dans <gi>list</gi> contenu dans <gi>encodingDesc</gi>. Chaque <gi>item</gi> étant une valeur possible de <att>corresp</att> qui lui fait référence par son <att>xml:id</att>.</p>
+                     <p>
+                        Ci-dessous les valeurs possibles de <att>corresp</att>, je les ai choisi au fur et à mesure des besoins en avançant dans l'encodage.
+                        <list>
+                           <item>orthographe</item>
+                           <item>ponctuation</item>
+                           <item>ordre</item>
+                           <item>different</item>
+                           <item>absence</item>
+                           <item>sens</item>
+                           <item>ajout</item>
+                        </list>
+                     </p>
+                     <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                        <app corresp="#orthographe">
+                           <lem wit="#C">s'esploitierent</lem>
+                           <rdg wit="#N">exploitierent</rdg>
+                           <rdg wit="#P">esploitierent</rdg>
+                        </app>
+                     </egXML>
+                  </div4>
+                  <div4>
+                     <head>Des balises soeurs, lem et rdg</head>
+                     <p>Balises filles de <gi>app</gi> j'ai choisi d'inclure nécessairement une balise <gi>lem</gi> en premier de celle-ci pour indiquer le témoin que j'ai jugé le plus nécessaire 
+                        à la compréhension du texte de par son orthographe ou son sens. Généralement mon jugement sur l'orthographe se base sur la proximité avec le français contemporain. Il peut suivre jusqu'à 3 <gi>rdg</gi> 
+                        puisqu'on a 4 témoins, ceux-la prendront <att>corresp</att> si les variations sont de valeurs différentes et ne peuvent pas s'exprimer dans <gi>app</gi>.(voir exemple)
+                        L'utilisation de <att>wit</att> est expliqué plus bas je ne reviens pas dessus. J'ai préféré ne pas utiliser de balise rdgGrp comme aurait pu le reccommander TEI car j'ai trouvé la résultat assez illisible j'ai préféré 
+                        répéter quelques fois deux <gi>rdg</gi> avec la même valeur en <att>corresp</att>.
+                     </p>
+                     <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                        <app>
+                           <lem wit="#N #P">si</lem>
+                           <rdg wit="#C" corresp="#orthographe">sy</rdg>
+                           <rdg wit="#T" corresp="#absence"/>
+                        </app>
+                     </egXML>
+                  </div4>
+               </div3>
+               <div3>
+                  <head>lacunaStart et lacunaEnd</head>
+                  <p>L'utilisation des deux balises susnnommées fut une évidence avec les différents témoins encodés, notamment entre les témoins C, N, P et le témoin T, ce dernier étant tès différent des autres. Afin d'éviter
+                  de répéter constamment une balise <gi>rdg</gi> vide avec <att>wit</att> égale au témoin absent ici on indique le début d'une lacune dans un témoin avec une balise <gi>lacunaStart</gi>. L'attribut 
+                  <att>wit</att> étant présent dans le <gi>rdg</gi> ou directement dans la balise si il y a besoin de précision. Même système pour la balise <gi>lacunaEnd</gi> qui indique donc la fin de la lacune ouverte précèdement.
+                  On préférera l'utilisation de ces balises plutôt que <att>corresp</att>="absence" lorsque le passage absent est conséquent, une phrase ou une information supplémentaire. Une fois la balise posée plus besoin 
+                  d'indiquer la non présence du témoin. Même le texte déposé directement dans la balise <gi>p</gi> ne se rapporte plus au témoin si une balise <gi>lacunaStart</gi> l'a identifié.
+                  </p>
+                  <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                     <app corresp="#orthographe">
+                        <lem wit="#T #N #P">du paÿs</lem>
+                        <rdg wit="#C">dou pais<lacunaStart/></rdg>
+                     </app>
+                  </egXML>
+                  <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                     <app corresp="#orthographe">
+                        <lem wit="#T #N">hommes que uns que autres</lem>
+                        <rdg wit="#C #P"><lacunaEnd wit="#C"/>, uns c'autres</rdg>
+                     </app>
+                  </egXML>
+               </div3>
+               <div3>
+                  <head>Les témoins avec witness et wit</head>
+                  <p>L'intérêt principal d'un encodage numérique étant de pouvoir identifier quel bout de texte vient de quel témoin facilement il est nécessaire de l'exprimer clairement. 
+                     On utilise pour cela <att>wit</att> qui se rapporte à un <att>xml:id</att> attribué dans une <gi>witness</gi> définie dans le <gi>teiHeader</gi>. Ainsi on exprime 
+                     le témoin avec # devant et plusieurs peuvent être présents dans le même <att>wit</att> séparés par un esapce.
+                     Dans les 4 <gi>witness</gi> j'ai représenté les différents manuscrits avec les informations mises dans les mêmes balises pour avoir une symétrie dans l'exploitation. </p>
+                  <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                     <witness xml:id="T">
+                        <msDesc>
+                           <msIdentifier>
+                              <placeName>
+                                 <country>France</country>
+                                 <settlement>Toulouse</settlement>
+                              </placeName>
+                              <institution>Bibliothèque municipale</institution>
+                              <idno>ms. 511</idno>
+                           </msIdentifier>
+                       </msDesc>
+                     </witness>
+                  </egXML>
+                  <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                     <lem wit="#N #P #T">demoura</lem>
+                     <rdg wit="#C">demora</rdg>
+                  </egXML>
+               </div3>
+            </div2>
+            <div2>
+               <head>Index des personnes et des lieux</head>
+               <p>La création d'un index est bien pratique pour l'utilisation de l'encodage, une seule entrée pour tous qu'ils soient présents dans les différents témoins ou juste un seul. Elle permet ici dans notre cas également 
+               d'exprimer les variantes orthographiques avec <gi>app</gi> et de les mettre en parralèle avec l'orthographe contemporaine.</p>
+               <div3>
+                  <head>Index des personnages</head>
+                  <p>L'index des personnages est contenu dans <gi>listPerson</gi> avec pour chaque personnages présents une balise <gi>person</gi> et son <att>xml:id</att> qu'on réutilisera dans le texte dans un <att>ref</att> de <gi>persName</gi>
+                     une fois dans <gi>text</gi>. L'écriture de la valeur du <att>xml:id</att> se fait en simplifiant le nom contemporain. (voir exemple)
+                     A defaut d'avoir de nombreux personnages dans l'index nous les avons découpés de manière assez précise, les <gi>persName</gi> contiennent des précisions sur l'usage des 
+                     noms dans le texte avec des <gi>roleName</gi>, <gi>forename</gi>, <gi>surname</gi> et toutes les balises qui peuvent aider à préciser un nom.
+                     Toujours dans l'index, si il y a une différence entre les orthographes des témoins et celle contemporaine, on l'exprime dans deux balises <gi>persName</gi> différenciées par leur attribut <att>type</att>.
+                     Il y a également une partie réservée aux relations entre les personnages contenu dans <gi>listRelation</gi>. Celle-ci n'a qu'un intérêt limité dans notre texte car il y a peu de personnages avec peu relations mais elle existe quand même.
+                  </p>
+                     <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                        <listPerson>
+                           <head>Liste des quelques personnages dans les différents témoins</head>
+                           <person xml:id="roi_angleterre">
+                              <persName type="contemporary-name">
+                                 <forename>Edward</forename>
+                                 <genName>III</genName>
+                                 <surname>Plantagenet</surname>
+                                 <roleName>
+                                    <nameLink>d'</nameLink>
+                                    <placeName ref="#angleterre">Angleterre</placeName>
+                                 </roleName>
+                              </persName>
+                              <persName type="text-name">
+                                 <roleName type="roi">
+                                    <app>
+                                       <lem wit="#N #P #T">roy</lem>
+                                       <rdg wit="#C" corresp="#orthographe">
+                                          rois
+                                          <forename>Edowars</forename>
+                                       </rdg>
+                                    </app>
+                                    <nameLink>d'</nameLink>
+                                    <placeName ref="#angleterre">Engleterre</placeName>
+                                 </roleName>
+                              </persName>
+                           </person>
+                           <!-- ... -->
+                        </listPerson>
+                     </egXML>
+                     <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                        <!-- utilisation dans <text> -->
+                        <persName ref="#angleterre">roi d'Engleterre</persName>
+                     </egXML>
+               </div3>
+               <div3>
+                  <head>Index des places</head>
+                  <p>Même principe que pour la <gi>listPerson</gi>, mais remplacée par <gi>listPlace</gi> contenu dans <gi>settingDesc</gi>. <gi>person</gi> est remplacée par <gi>place</gi> toujour avec un <att>xml:id</att>. 
+                     Il y a des précisions entre les différents lieux évoqués à l'aide de <gi>country</gi>, <gi>settlement</gi>, <gi>region</gi>. L'attribut <att>type</att> peut être utilisé pour 
+                     préciser davantage encore par exemple ci-dessous avec un type village.
+                  </p>
+                  <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                     <settingDesc>
+                        <listPlace>
+                           <!--  -->
+                           <place xml:id="st_riquier">
+                              <settlement type="village">
+                                 <placeName type="contemporary-name">
+                                    Saint-Riquier
+                                 </placeName>
+                                 <placeName type="text-name">
+                                    <app>
+                                       <lem wit="#T">Saint Rikier</lem>
+                                    </app>
+                                 </placeName>
+                              </settlement>
+                           </place>
+                           <place xml:id="france">
+                              <country>
+                                 <placeName type="contemporary-name">
+                                    France
+                                 </placeName>
+                                 <placeName type="text-name">
+                                    <app>
+                                       <lem wit="#N #P #T">France</lem>
+                                       <rdg wit="#C">Franche</rdg>
+                                    </app>
+                                 </placeName>
+                              </country>  
+                           </place>
+                           <!--  -->
+                        </listPlace>
+                     </settingDesc>
+                  </egXML>
+               </div3>
+            </div2>
+            <div2>
+               <head>Intérêt de l'encodage numérique</head>
+               <p>Encoder ces 4 textes en numérique permet d'aller bien au-delà de la mise en parallèle des différentes sources d'une oeuvre originalement présente sur le site The Online Froissairt. Ici on creuse davantage avec un détail au mot à mot.
+                  Il est facile d'imaginer alors une utilisation comme le fait par exemple TEI CAT, qui permet de traiter les éditions critiques numériques sous format TEI, automatiquement comme vu en cours. Les utilisations pour la recherche peuvent être 
+               nombreuses ou peut être plus simplement l'intégrer pour enrichir un site web ou autre. Le format XML permet une grande polyvalence car très simple à transformer.</p>
+            </div2>
+         </div1>
+         
+         <!-- FIN DOCUMENTATION -->
+         
+         <!-- DEBUT DE LA DEFINITON DES ELEMENTS -->
+         
+         <div1>
+            <head>Liste des éléments TEI utilisés</head>
+            <!-- LES ATTRIBUTS CORRESP ET WIT SONT MODIFIES DIRECTEMENTS DANS LA CLASSE EN BAS DU DOCUMENTS LES ELEMENTS MODIFIES ONT UN COMMENTAIRE JUSTE AU DESSUS -->
+            <schemaSpec ident="oddbyexample" start="TEI ">
+               <moduleRef key="tei"/>
+               <!--Checking module textcrit-->
+               <classRef key="att.rdgPart"/>
+               <classRef key="att.textCritical"/>
+               <classRef key="model.rdgLike"/>
+               <classRef key="model.rdgPart"/>
+               <moduleRef key="textcrit"
+                  include="app lem rdg rdgGrp listWit witness lacunaStart lacunaEnd"/>
+
+               <!-- A ETE MODIFIE -->
+
+               <elementSpec ident="app" mode="change">
+                  <gloss>Utilisée pour indiquer les variations entre les témoins.</gloss>
+                  <desc>Est utilisée à n'importe quel endroit du fichier pour indiquer des
+                     variations, dans le <gi>body</gi> comme dans le <gi>teiHeader</gi>, prend comme
+                     unique attribut <att>corresp</att> qui indique la variation qui pèse sur chacun
+                     des <gi>rdg</gi> qui le compose par rapport au <gi>lem</gi>.</desc>
+                  <!-- Configuration de l'ordre des balises contenues dans app toujours un unique lem suivi possiblement et exclusivement d'un rdgGrp ou d'un à 3 rdg -->
+                  <content>
+                     <sequence preserveOrder="true">
+                        <elementRef key="lem" minOccurs="1" maxOccurs="1"/>
+                        <alternate minOccurs="0" maxOccurs="1">
+                           <sequence>
+                              <elementRef key="rdg" minOccurs="1" maxOccurs="3"/>
+                           </sequence>
+                           <sequence>
+                              <elementRef key="rdgGrp" minOccurs="1" maxOccurs="1"/>
+                           </sequence>
+                        </alternate>
+                     </sequence>
+                  </content>
+                  <attList>
+                     <attDef ident="type" mode="delete"/>
+                     <attDef ident="from" mode="delete"/>
+                     <attDef ident="to" mode="delete"/>
+                     <attDef ident="loc" mode="delete"/>
+                     <attDef ident="cert" mode="delete"/>
+                     <attDef ident="type" mode="delete"/>
+                  </attList>
+               </elementSpec>
+
+               <!-- A ETE DECRIT -->
+
+               <elementSpec ident="lem" mode="change">
+                  <gloss>La balise contient la partie du texte considérée comme faisant le plus de
+                     sens dans l'information qu'elle ajoute par rapport aux autres témoins.</gloss>
+                  <desc>Utilisée dans une balise <gi>app</gi>. Elle prend comme attribut
+                        <att>wit</att> de manière systémtique. Elle n'est pas obligée de contenir du
+                     texte.</desc>
+                  <attList>
+                     <attDef ident="corresp" mode="delete"/>
+                     <attDef ident="cert" mode="delete"/>
+                     <attDef ident="type" mode="delete"/>
+                  </attList>
+               </elementSpec>
+
+               <!-- A ETE DECRIT -->
+               <elementSpec ident="rdg" mode="change">
+                  <gloss>Représente le ou les témoins qui ne sont pas considérés comme étant le
+                     lem.</gloss>
+                  <desc>Utilisée dans une balise <gi>app</gi> elle suit normalement toujours un
+                     unique <gi>lem</gi> et peut apparaîtrea au moins 3 fois. elle prend comme
+                     attribut <att>wit</att> de manière systémtique et en général si ce n'est pas
+                     specifié dans la balise <gi>app</gi> parente le type de variation par rapport
+                     au <gi>lem</gi> dans un attribut <att>corresp</att> avec une liste de valeur
+                     fermée.</desc>
+
+                  <attList>
+                     <attDef ident="cert" mode="delete"/>
+                     <attDef ident="type" mode="delete"/>
+                  </attList>
+               </elementSpec>
+
+               <!-- A ETE MODIFIE -->
+               <elementSpec ident="rdgGrp" mode="change">
+                  <gloss>Regroupe plusieurs rdg si les témoins ont des variations communes.</gloss>
+                  <desc>Se place dans une balise <gi>app</gi> une seule fois, peut contenir jusqu'à
+                     3 <gi>rdg</gi> selon un <att>type</att> renseigné nécessairement.</desc>
+                  <content>
+                     <sequence>
+                        <elementRef key="rdg" minOccurs="1" maxOccurs="3"/>
+                     </sequence>
+                  </content>
+                  <attList>
+                     <attDef ident="cert" mode="delete"/>
+                     <attDef ident="type" mode="change" usage="req"> </attDef>
+                  </attList>
+               </elementSpec>
+
+               <!-- A ETE MODIFIE -->
+               <elementSpec ident="listWit" mode="change">
+                  <gloss>Contient la liste des témoins de l'édition critique.</gloss>
+                  <desc>Contenu dans <gi>sourceDesc</gi>, est utilisé pour lister les différents
+                     témoins contenu dans une balise <gi>witness</gi>.</desc>
+                  <content>
+                     <sequence minOccurs="1" maxOccurs="unbounded">
+                        <elementRef key="witness"/>
+                     </sequence>
+                  </content>
+                  <attList>
+                     <attDef ident="corresp" mode="delete"/>
+                     <attDef ident="cert" mode="delete"/>
+                  </attList>
+               </elementSpec>
+
+               <!-- A ETE DECRIT -->
+               <!-- REGLE DE CONTRAINTE POUR IMPOSER UNE MAJUSCULE EN ID ET LA PRESENCE D'UN ID -->
+               <elementSpec ident="witness" mode="change">
+                  <gloss>Contient les informations sur un témoin.</gloss>
+                  <desc> Le témoin est identifié par <att>xml:id</att> nécessaire.</desc>
+                  <constraintSpec scheme="schematron" ident="avoirMajuscule">
+                     <constraint xmlns:tei="&lien_tei;">
+                        <!-- PAS BESOIN DE VERIFIER QUE LE XML:ID EST UNIQUE DANS LA REGLE C'EST DEJA VERIFIE CAR C'EST UN ID -->
+                        <s:assert test="./@xml:id and matches(./@xml:id,'[A-Z]')">
+                           Le témoin doit avoir un identifiant composé d'une unique masjuscule différentes des autres identifiants de témoins.
+                        </s:assert>
+                     </constraint>
+                  </constraintSpec>
+                  <attList>
+                     <attDef ident="corresp" mode="delete"/>
+                     <attDef ident="cert" mode="delete"/>
+                     <attDef ident="xml:id" mode="change">
+                        <valList>
+                           <valItem ident="P"/>
+                           <valItem ident="T"/>
+                           <valItem ident="N"/>
+                           <valItem ident="C"/>
+                        </valList>
+                     </attDef>
+                  </attList>
+               </elementSpec>
+
+
+               <!-- A ETE DECRIT -->
+               <elementSpec ident="lacunaStart" mode="change">
+                  <gloss>Indique le début d'une lacune dans un témoin.</gloss>
+                  <desc>Le témoin est identifié dans l'attribut <att>wit</att> contenu ou bien
+                     directement dans la balise ou bien dans la balise parente <gi>lem</gi> ou
+                        <gi>rdg</gi>.</desc>
+                  <attList>
+                     <attDef ident="corresp" mode="delete"/>
+                     <attDef ident="cert" mode="delete"/>
+                  </attList>
+
+                  <!-- A ETE DECRIT -->
+               </elementSpec>
+               <elementSpec ident="lacunaEnd" mode="change">
+                  <gloss>Indique la fin d'une lacune dans un témoin.</gloss>
+                  <desc>Le témoin est identifié dans l'attribut <att>wit</att> contenu ou bien
+                     directement dans la balise ou bien dans la balise parente <gi>lem</gi> ou
+                        <gi>rdg</gi>.</desc>
+                  <attList>
+                     <attDef ident="corresp" mode="delete"/>
+                     <attDef ident="cert" mode="delete"/>
+                  </attList>
+
+               </elementSpec>
+               <classSpec ident="att.textCritical" type="atts" mode="change">
+                  <attList>
+                     <attDef ident="cause" mode="delete"/>
+                     <attDef ident="varSeq" mode="delete"/>
+                     <attDef ident="require" mode="delete"/>
+                  </attList>
+               </classSpec>
+
+
+
+               <classRef key="model.physDescPart"/>
+               <moduleRef key="msdescription"
+                  include="msDesc origDate origPlace msIdentifier institution msContents msItem physDesc objectDesc supportDesc support history origin additional adminInfo recordHist source custodialHist custEvent"/>
+               <elementSpec ident="msDesc" mode="change">
+                  <attList>
+                     <attDef ident="corresp" mode="delete"/>
+                     <attDef ident="cert" mode="delete"/>
+                     <attDef ident="type" mode="delete"/>
+                     <attDef ident="status" mode="change">
+                        <valList mode="add" type="closed">
+                           <valItem ident="draft"/>
+                        </valList>
+                     </attDef>
+                  </attList>
+               </elementSpec>
+               <elementSpec ident="origDate" mode="change">
+                  <attList>
+                     <attDef ident="corresp" mode="delete"/>
+                     <attDef ident="when" mode="delete"/>
+                     <attDef ident="type" mode="change">
+                        <valList mode="add" type="closed">
+                           <valItem ident="date-range"/>
+                           <valItem ident="precise"/>
+                        </valList>
+                     </attDef>
+                  </attList>
+               </elementSpec>
+               <elementSpec ident="origPlace" mode="change">
+                  <attList>
+                     <attDef ident="corresp" mode="delete"/>
+                     <attDef ident="ref" mode="delete"/>
+                     <attDef ident="when" mode="delete"/>
+                     <attDef ident="type" mode="delete"/>
+                  </attList>
+               </elementSpec>
+               <elementSpec ident="msIdentifier" mode="change">
+                  <attList>
+                     <attDef ident="corresp" mode="delete"/>
+                     <attDef ident="cert" mode="delete"/>
+                  </attList>
+               </elementSpec>
+               <elementSpec ident="institution" mode="change">
+                  <attList>
+                     <attDef ident="corresp" mode="delete"/>
+                     <attDef ident="cert" mode="delete"/>
+                     <attDef ident="ref" mode="delete"/>
+                  </attList>
+               </elementSpec>
+               <elementSpec ident="msContents" mode="change">
+                  <attList>
+                     <attDef ident="corresp" mode="delete"/>
+                     <attDef ident="cert" mode="delete"/>
+                  </attList>
+               </elementSpec>
+               <elementSpec ident="msItem" mode="change">
+                  <attList>
+                     <attDef ident="corresp" mode="delete"/>
+                     <attDef ident="cert" mode="delete"/>
+                  </attList>
+               </elementSpec>
+               <elementSpec ident="physDesc" mode="change">
+                  <attList>
+                     <attDef ident="corresp" mode="delete"/>
+                     <attDef ident="cert" mode="delete"/>
+                  </attList>
+               </elementSpec>
+               <elementSpec ident="objectDesc" mode="change">
+                  <attList>
+                     <attDef ident="form" mode="delete"/>
+                     <attDef ident="corresp" mode="delete"/>
+                     <attDef ident="cert" mode="delete"/>
+                  </attList>
+               </elementSpec>
+               <elementSpec ident="supportDesc" mode="change">
+                  <attList>
+                     <attDef ident="material" mode="delete"/>
+                     <attDef ident="corresp" mode="delete"/>
+                     <attDef ident="cert" mode="delete"/>
+                  </attList>
+               </elementSpec>
+               <elementSpec ident="support" mode="change">
+                  <attList>
+                     <attDef ident="corresp" mode="delete"/>
+                     <attDef ident="cert" mode="delete"/>
+                  </attList>
+               </elementSpec>
+               <elementSpec ident="history" mode="change">
+                  <attList>
+                     <attDef ident="corresp" mode="delete"/>
+                     <attDef ident="cert" mode="delete"/>
+                  </attList>
+               </elementSpec>
+               <elementSpec ident="origin" mode="change">
+                  <attList>
+                     <attDef ident="corresp" mode="delete"/>
+                     <attDef ident="cert" mode="delete"/>
+                     <attDef ident="when" mode="delete"/>
+                  </attList>
+               </elementSpec>
+               <elementSpec ident="additional" mode="change">
+                  <attList>
+                     <attDef ident="corresp" mode="delete"/>
+                     <attDef ident="cert" mode="delete"/>
+                  </attList>
+               </elementSpec>
+               <elementSpec ident="adminInfo" mode="change">
+                  <attList>
+                     <attDef ident="corresp" mode="delete"/>
+                     <attDef ident="cert" mode="delete"/>
+                  </attList>
+               </elementSpec>
+               <elementSpec ident="recordHist" mode="change">
+                  <attList>
+                     <attDef ident="corresp" mode="delete"/>
+                     <attDef ident="cert" mode="delete"/>
+                  </attList>
+               </elementSpec>
+               <elementSpec ident="source" mode="change">
+                  <attList>
+                     <attDef ident="corresp" mode="delete"/>
+                     <attDef ident="cert" mode="delete"/>
+                  </attList>
+               </elementSpec>
+               <elementSpec ident="custodialHist" mode="change">
+                  <attList>
+                     <attDef ident="corresp" mode="delete"/>
+                     <attDef ident="cert" mode="delete"/>
+                  </attList>
+               </elementSpec>
+               <elementSpec ident="custEvent" mode="change">
+                  <attList>
+                     <attDef ident="corresp" mode="delete"/>
+                     <attDef ident="cert" mode="delete"/>
+                     <attDef ident="type" mode="change">
+                        <valList mode="add" type="closed">
+                           <valItem ident="acquisition"/>
+                        </valList>
+                     </attDef>
+                  </attList>
+               </elementSpec>
+
+
+               <classRef key="model.persNamePart"/>
+               <moduleRef key="namesdates"
+                  include="orgName persName surname forename genName nameLink addName roleName placeName country region settlement listPerson listPlace listRelation person place relation"/>
+               <elementSpec ident="orgName" mode="change">
+                  <attList>
+                     <attDef ident="corresp" mode="delete"/>
+                     <attDef ident="cert" mode="delete"/>
+                     <attDef ident="when" mode="delete"/>
+                     <attDef ident="full" mode="change">
+                        <valList mode="add" type="closed">
+                           <valItem ident="yes"/>
+                        </valList>
+                     </attDef>
+                     <attDef ident="type" mode="delete"/>
+                  </attList>
+               </elementSpec>
+
+               <!-- REGLE SCHEMATRON INSPIRE DE L'EXEMPLE DU COURS SUR LES placeName-->
+
+               <elementSpec ident="persName" mode="change">
+                  <constraintSpec scheme="schematron" ident="aRef"
+                     xmlns:tei="&lien_tei;">
+                     <constraint>
+                        <s:pattern>
+                           <s:rule context="tei:TEI//tei:body//tei:persName">
+                              <s:let name="ref" value="substring-after(@ref, '#')"/>
+                              <s:assert
+                                 test="@ref and $ref = //tei:TEI//tei:listPerson//tei:person/@xml:id"
+                                 > la valeur @ref du &lt;persName&gt; doit être renseignée et
+                                 correspondre à une &lt;person&gt; déclarée dans le
+                                 &lt;listPerson&gt; </s:assert>
+                           </s:rule>
+                        </s:pattern>
+                     </constraint>
+                  </constraintSpec>
+                  <attList>
+                     <attDef ident="corresp" mode="delete"/>
+                     <attDef ident="cert" mode="delete"/>
+                     <attDef ident="when" mode="delete"/>
+                     <attDef ident="full" mode="change">
+                        <valList mode="add" type="closed">
+                           <valItem ident="yes"/>
+                        </valList>
+                     </attDef>
+                     <attDef ident="type" mode="change">
+                        <valList mode="add" type="closed">
+                           <valItem ident="contemporary-name"/>
+                           <valItem ident="text-name"/>
+                        </valList>
+                     </attDef>
+                  </attList>
+               </elementSpec>
+               <elementSpec ident="surname" mode="change">
+                  <attList>
+                     <attDef ident="corresp" mode="delete"/>
+                     <attDef ident="cert" mode="delete"/>
+                     <attDef ident="full" mode="change">
+                        <valList mode="add" type="closed">
+                           <valItem ident="yes"/>
+                        </valList>
+                     </attDef>
+                     <attDef ident="ref" mode="delete"/>
+                     <attDef ident="type" mode="delete"/>
+                  </attList>
+               </elementSpec>
+               <elementSpec ident="forename" mode="change">
+                  <attList>
+                     <attDef ident="corresp" mode="delete"/>
+                     <attDef ident="cert" mode="delete"/>
+                     <attDef ident="full" mode="change">
+                        <valList mode="add" type="closed">
+                           <valItem ident="yes"/>
+                        </valList>
+                     </attDef>
+                     <attDef ident="ref" mode="delete"/>
+                     <attDef ident="type" mode="delete"/>
+                  </attList>
+               </elementSpec>
+               <elementSpec ident="genName" mode="change">
+                  <attList>
+                     <attDef ident="corresp" mode="delete"/>
+                     <attDef ident="cert" mode="delete"/>
+                     <attDef ident="full" mode="change">
+                        <valList mode="add" type="closed">
+                           <valItem ident="yes"/>
+                        </valList>
+                     </attDef>
+                     <attDef ident="ref" mode="delete"/>
+                     <attDef ident="type" mode="delete"/>
+                  </attList>
+               </elementSpec>
+               <elementSpec ident="nameLink" mode="change">
+                  <attList>
+                     <attDef ident="corresp" mode="delete"/>
+                     <attDef ident="cert" mode="delete"/>
+                     <attDef ident="type" mode="delete"/>
+                  </attList>
+               </elementSpec>
+               <elementSpec ident="addName" mode="change">
+                  <attList>
+                     <attDef ident="corresp" mode="delete"/>
+                     <attDef ident="cert" mode="delete"/>
+                     <attDef ident="full" mode="change">
+                        <valList mode="add" type="closed">
+                           <valItem ident="yes"/>
+                        </valList>
+                     </attDef>
+                     <attDef ident="ref" mode="delete"/>
+                     <attDef ident="type" mode="delete"/>
+                  </attList>
+               </elementSpec>
+               <elementSpec ident="roleName" mode="change">
+                  <attList>
+                     <attDef ident="corresp" mode="delete"/>
+                     <attDef ident="cert" mode="delete"/>
+                  </attList>
+               </elementSpec>
+
+               <!-- REGLE SCHEMATRON REPRISE DES EXEMPLES DU COURS -->
+
+               <elementSpec ident="placeName" mode="change">
+                  <constraintSpec scheme="schematron" ident="aRef"
+                     xmlns:tei="&lien_tei;">
+                     <constraint>
+                        <s:pattern>
+                           <s:rule context="tei:TEI//tei:body//tei:placeName">
+                              <s:let name="ref" value="substring-after(@ref, '#')"/>
+                              <s:assert
+                                 test="@ref and $ref = //tei:TEI//tei:settingDesc//tei:place/@xml:id"
+                                 > la valeur @ref du &lt;placeName&gt; doit être renseignée et
+                                 correspondre à une &lt;place&gt; déclarée dans le
+                                 &lt;settingDesc&gt; </s:assert>
+                           </s:rule>
+                        </s:pattern>
+                     </constraint>
+                  </constraintSpec>
+                  <attList>
+                     <attDef ident="when" mode="delete"/>
+                     <attDef ident="corresp" mode="delete"/>
+                     <attDef ident="cert" mode="delete"/>
+                     <attDef ident="type" mode="change">
+                        <valList mode="add" type="closed">
+                           <valItem ident="contemporary-name"/>
+                           <valItem ident="text-name"/>
+                        </valList>
+                     </attDef>
+                  </attList>
+               </elementSpec>
+               <elementSpec ident="country" mode="change">
+                  <attList>
+                     <attDef ident="corresp" mode="delete"/>
+                     <attDef ident="cert" mode="delete"/>
+                     <attDef ident="ref" mode="delete"/>
+                     <attDef ident="type" mode="delete"/>
+                     <attDef ident="when" mode="delete"/>
+                  </attList>
+               </elementSpec>
+               <elementSpec ident="region" mode="change">
+                  <attList>
+                     <attDef ident="corresp" mode="delete"/>
+                     <attDef ident="cert" mode="delete"/>
+                     <attDef ident="ref" mode="delete"/>
+                     <attDef ident="type" mode="delete"/>
+                     <attDef ident="when" mode="delete"/>
+                  </attList>
+               </elementSpec>
+               <elementSpec ident="settlement" mode="change">
+                  <attList>
+                     <attDef ident="corresp" mode="delete"/>
+                     <attDef ident="cert" mode="delete"/>
+                     <attDef ident="ref" mode="delete"/>
+                     <attDef ident="type" mode="change">
+                        <valList mode="add" type="closed">
+                           <valItem ident="town"/>
+                           <valItem ident="village"/>
+                        </valList>
+                     </attDef>
+                     <attDef ident="when" mode="delete"/>
+                  </attList>
+               </elementSpec>
+               <elementSpec ident="listPerson" mode="change">
+                  <attList>
+                     <attDef ident="corresp" mode="delete"/>
+                     <attDef ident="cert" mode="delete"/>
+                     <attDef ident="type" mode="delete"/>
+                  </attList>
+               </elementSpec>
+               <elementSpec ident="listPlace" mode="change">
+                  <attList>
+                     <attDef ident="corresp" mode="delete"/>
+                     <attDef ident="cert" mode="delete"/>
+                     <attDef ident="type" mode="delete"/>
+                     <attDef ident="default" mode="change">
+                        <valList mode="add" type="closed">
+                           <valItem ident="false"/>
+                        </valList>
+                     </attDef>
+                  </attList>
+               </elementSpec>
+               <elementSpec ident="listRelation" mode="change">
+                  <attList>
+                     <attDef ident="corresp" mode="delete"/>
+                     <attDef ident="cert" mode="delete"/>
+                     <attDef ident="type" mode="delete"/>
+                  </attList>
+               </elementSpec>
+               <elementSpec ident="person" mode="change">
+                  <attList>
+                     <attDef ident="role" mode="delete"/>
+                     <attDef ident="sex" mode="delete"/>
+                     <attDef ident="gender" mode="delete"/>
+                     <attDef ident="age" mode="delete"/>
+                     <attDef ident="corresp" mode="delete"/>
+                     <attDef ident="cert" mode="delete"/>
+                  </attList>
+               </elementSpec>
+               <elementSpec ident="place" mode="change">
+                  <attList>
+                     <attDef ident="corresp" mode="delete"/>
+                     <attDef ident="cert" mode="delete"/>
+                     <attDef ident="type" mode="change">
+                        <valList mode="add" type="closed">
+                           <valItem ident="oisemont"/>
+                        </valList>
+                     </attDef>
+                  </attList>
+               </elementSpec>
+               <elementSpec ident="relation" mode="change">
+                  <attList>
+                     <attDef ident="name" mode="change">
+                        <valList mode="add" type="closed">
+                           <valItem ident="petit-cousin"/>
+                           <valItem ident="suzerain"/>
+                        </valList>
+                     </attDef>
+                     <attDef ident="mutual" mode="delete"/>
+                     <attDef ident="f" mode="delete"/>
+                     <attDef ident="cert" mode="delete"/>
+                     <attDef ident="when" mode="delete"/>
+                     <attDef ident="ref" mode="delete"/>
+                     <attDef ident="type" mode="delete"/>
+                  </attList>
+               </elementSpec>
+               
+               <classRef key="att.lexicographic"/>
+               <classRef key="model.entryLike"/>
+               <classRef key="model.formPart"/>
+               <classRef key="model.gramPart"/>
+               <classRef key="model.lexicalRefinement"/>
+               <classRef key="model.morphLike"/>
+               <classRef key="model.ptrLike.form"/>
+               <moduleRef key="dictionaries" include="lang"/>
+               <elementSpec ident="lang" mode="change">
+                  <attList>
+                     <attDef ident="corresp" mode="delete"/>
+                     <attDef ident="cert" mode="delete"/>
+                  </attList>
+               </elementSpec>
+               <classSpec ident="att.lexicographic" type="atts" mode="change">
+                  <attList>
+                     <attDef ident="expand" mode="delete"/>
+                     <attDef ident="split" mode="delete"/>
+                     <attDef ident="value" mode="delete"/>
+                     <attDef ident="location" mode="delete"/>
+                     <attDef ident="mergedIn" mode="delete"/>
+                  </attList>
+               </classSpec>
+               
+               <classRef key="att.combinable"/>
+               <classRef key="att.identified"/>
+               <classRef key="model.contentPart"/>
+               <moduleRef key="tagdocs"
+                  include="classRef moduleRef schemaSpec elementSpec classSpec attList attDef valItem valList"/>
+               <elementSpec ident="classRef" mode="change">
+                  <attList>
+                     <attDef ident="expand" mode="delete"/>
+                     <attDef ident="include" mode="delete"/>
+                     <attDef ident="except" mode="delete"/>
+                     <attDef ident="corresp" mode="delete"/>
+                     <attDef ident="cert" mode="delete"/>
+                  </attList>
+               </elementSpec>
+               <elementSpec ident="moduleRef" mode="change">
+                  <attList>
+                     <attDef ident="prefix" mode="delete"/>
+                     <attDef ident="except" mode="delete"/>
+                     <attDef ident="url" mode="delete"/>
+                     <attDef ident="corresp" mode="delete"/>
+                     <attDef ident="cert" mode="delete"/>
+                  </attList>
+               </elementSpec>
+               <elementSpec ident="schemaSpec" mode="change">
+                  <attList>
+                     <attDef ident="prefix" mode="delete"/>
+                     <attDef ident="targetLang" mode="delete"/>
+                     <attDef ident="docLang" mode="delete"/>
+                     <attDef ident="defaultExceptions" mode="delete"/>
+                     <attDef ident="corresp" mode="delete"/>
+                     <attDef ident="cert" mode="delete"/>
+                     <attDef ident="mode" mode="delete"/>
+                     <attDef ident="status" mode="delete"/>
+                  </attList>
+               </elementSpec>
+               <elementSpec ident="elementSpec" mode="change">
+                  <attList>
+                     <attDef ident="prefix" mode="delete"/>
+                     <attDef ident="corresp" mode="delete"/>
+                     <attDef ident="cert" mode="delete"/>
+                     <attDef ident="mode" mode="change">
+                        <valList mode="add" type="closed">
+                           <valItem ident="change"/>
+                        </valList>
+                     </attDef>
+                  </attList>
+               </elementSpec>
+               <elementSpec ident="classSpec" mode="change">
+                  <attList>
+                     <attDef ident="type" mode="change">
+                        <valList mode="add" type="closed">
+                           <valItem ident="atts"/>
+                        </valList>
+                     </attDef>
+                     <attDef ident="generate" mode="delete"/>
+                     <attDef ident="corresp" mode="delete"/>
+                     <attDef ident="cert" mode="delete"/>
+                     <attDef ident="mode" mode="change">
+                        <valList mode="add" type="closed">
+                           <valItem ident="change"/>
+                        </valList>
+                     </attDef>
+                     <attDef ident="type" mode="change">
+                        <valList mode="add" type="closed">
+                           <valItem ident="atts"/>
+                        </valList>
+                     </attDef>
+                  </attList>
+               </elementSpec>
+               <elementSpec ident="attList" mode="change">
+                  <attList>
+                     <attDef ident="org" mode="delete"/>
+                     <attDef ident="corresp" mode="delete"/>
+                     <attDef ident="cert" mode="delete"/>
+                  </attList>
+               </elementSpec>
+               <elementSpec ident="attDef" mode="change">
+                  <attList>
+                     <attDef ident="usage" mode="delete"/>
+                     <attDef ident="ns" mode="delete"/>
+                     <attDef ident="corresp" mode="delete"/>
+                     <attDef ident="cert" mode="delete"/>
+                     <attDef ident="mode" mode="change">
+                        <valList mode="add" type="closed">
+                           <valItem ident="change"/>
+                           <valItem ident="delete"/>
+                        </valList>
+                     </attDef>
+                  </attList>
+               </elementSpec>
+               <elementSpec ident="valItem" mode="change">
+                  <attList>
+                     <attDef ident="corresp" mode="delete"/>
+                     <attDef ident="cert" mode="delete"/>
+                     <attDef ident="mode" mode="delete"/>
+                  </attList>
+               </elementSpec>
+               <elementSpec ident="valList" mode="change">
+                  <attList>
+                     <attDef ident="type" mode="change">
+                        <valList mode="add" type="closed">
+                           <valItem ident="closed"/>
+                           <valItem ident="open"/>
+                        </valList>
+                     </attDef>
+                     <attDef ident="corresp" mode="delete"/>
+                     <attDef ident="cert" mode="delete"/>
+                     <attDef ident="mode" mode="change">
+                        <valList mode="add" type="closed">
+                           <valItem ident="add"/>
+                        </valList>
+                     </attDef>
+                  </attList>
+               </elementSpec>
+               <classSpec ident="att.identified" type="atts" mode="change">
+                  <attList>
+                     <attDef ident="predeclare" mode="delete"/>
+                     <attDef ident="module" mode="delete"/>
+                  </attList>
+               </classSpec>
+               <classSpec ident="att.ascribed.directed" type="atts" mode="change">
+                  <attList>
+                     <attDef ident="toWhom" mode="delete"/>
+                  </attList>
+               </classSpec>
+               <classSpec ident="att.canonical" type="atts" mode="change">
+                  <attList>
+                     <attDef ident="key" mode="delete"/>
+                  </attList>
+               </classSpec>
+               <classSpec ident="att.dimensions" type="atts" mode="change">
+                  <attList>
+                     <attDef ident="unit" mode="delete"/>
+                     <attDef ident="quantity" mode="delete"/>
+                     <attDef ident="extent" mode="delete"/>
+                     <attDef ident="precision" mode="delete"/>
+                     <attDef ident="scope" mode="delete"/>
+                  </attList>
+               </classSpec>
+               <classSpec ident="att.damaged" type="atts" mode="change">
+                  <attList>
+                     <attDef ident="agent" mode="delete"/>
+                     <attDef ident="degree" mode="delete"/>
+                     <attDef ident="group" mode="delete"/>
+                  </attList>
+               </classSpec>
+               <classSpec ident="att.datable.w3c" type="atts" mode="change">
+                  <attList>
+                     <attDef ident="notBefore" mode="delete"/>
+                     <attDef ident="notAfter" mode="delete"/>
+                     <attDef ident="from" mode="delete"/>
+                     <attDef ident="to" mode="delete"/>
+                  </attList>
+               </classSpec>
+               <classSpec ident="att.datable" type="atts" mode="change">
+                  <attList>
+                     <attDef ident="calendar" mode="delete"/>
+                     <attDef ident="period" mode="delete"/>
+                  </attList>
+               </classSpec>
+               <classSpec ident="att.divLike" type="atts" mode="change">
+                  <attList>
+                     <attDef ident="org" mode="delete"/>
+                     <attDef ident="sample" mode="delete"/>
+                  </attList>
+               </classSpec>
+               <classSpec ident="att.global.responsibility" type="atts" mode="change">
+                  <attList>
+                     <attDef ident="resp" mode="delete"/>
+                  </attList>
+               </classSpec>
+               <classSpec ident="att.editLike" type="atts" mode="change">
+                  <attList>
+                     <attDef ident="evidence" mode="delete"/>
+                  </attList>
+               </classSpec>
+               <classSpec ident="att.media" type="atts" mode="change">
+                  <attList>
+                     <attDef ident="width" mode="delete"/>
+                     <attDef ident="height" mode="delete"/>
+                     <attDef ident="scale" mode="delete"/>
+                  </attList>
+               </classSpec>
+               <classSpec ident="att.naming" type="atts" mode="change">
+                  <attList>
+                     <attDef ident="role" mode="delete"/>
+                     <attDef ident="nymRef" mode="delete"/>
+                  </attList>
+               </classSpec>
+               <classSpec ident="att.typed" type="atts" mode="change">
+                  <attList>
+                     <attDef ident="subtype" mode="delete"/>
+                  </attList>
+               </classSpec>
+               <classSpec ident="att.pointing" type="atts" mode="change">
+                  <attList>
+                     <attDef ident="targetLang" mode="delete"/>
+                     <attDef ident="evaluate" mode="delete"/>
+                  </attList>
+               </classSpec>
+               <classSpec ident="att.pointing.group" type="atts" mode="change">
+                  <attList>
+                     <attDef ident="domains" mode="delete"/>
+                     <attDef ident="targFunc" mode="delete"/>
+                  </attList>
+               </classSpec>
+               <classSpec ident="att.segLike" type="atts" mode="change">
+                  <attList>
+                     <attDef ident="function" mode="delete"/>
+                  </attList>
+               </classSpec>
+               <classSpec ident="att.timed" type="atts" mode="change">
+                  <attList>
+                     <attDef ident="start" mode="delete"/>
+                     <attDef ident="end" mode="delete"/>
+                  </attList>
+               </classSpec>
+               <classSpec ident="att.transcriptional" type="atts" mode="change">
+                  <attList>
+                     <attDef ident="status" mode="delete"/>
+                     <attDef ident="cause" mode="delete"/>
+                     <attDef ident="seq" mode="delete"/>
+                  </attList>
+               </classSpec>
+               <classSpec ident="att.personal" type="atts" mode="change">
+                  <attList>
+                     <attDef ident="sort" mode="delete"/>
+                  </attList>
+               </classSpec>
+               <!--Checking module core-->
+               <moduleRef key="core"
+                  include="p desc date ref list item head pb author respStmt resp title publisher textLang"/>
+               <elementSpec ident="p" mode="change">
+                  <attList>
+                     <attDef ident="corresp" mode="delete"/>
+                     <attDef ident="cert" mode="delete"/>
+                  </attList>
+               </elementSpec>
+               <elementSpec ident="desc" mode="change">
+                  <attList>
+                     <attDef ident="type" mode="delete"/>
+                     <attDef ident="corresp" mode="delete"/>
+                     <attDef ident="cert" mode="delete"/>
+                     <attDef ident="type" mode="delete"/>
+                  </attList>
+               </elementSpec>
+               <elementSpec ident="date" mode="change">
+                  <attList>
+                     <attDef ident="corresp" mode="delete"/>
+                     <attDef ident="cert" mode="delete"/>
+                     <attDef ident="ref" mode="delete"/>
+                     <attDef ident="type" mode="delete"/>
+                  </attList>
+               </elementSpec>
+               <elementSpec ident="ref" mode="change">
+                  <attList>
+                     <attDef ident="corresp" mode="delete"/>
+                     <attDef ident="cert" mode="delete"/>
+                     <attDef ident="type" mode="delete"/>
+                  </attList>
+               </elementSpec>
+               <elementSpec ident="list" mode="change">
+                  <attList>
+                     <attDef ident="type" mode="delete"/>
+                     <attDef ident="corresp" mode="delete"/>
+                     <attDef ident="cert" mode="delete"/>
+                     <attDef ident="type" mode="delete"/>
+                  </attList>
+               </elementSpec>
+               <elementSpec ident="item" mode="change">
+                  <attList>
+                     <attDef ident="corresp" mode="delete"/>
+                     <attDef ident="cert" mode="delete"/>
+                  </attList>
+               </elementSpec>
+               <elementSpec ident="head" mode="change">
+                  <attList>
+                     <attDef ident="corresp" mode="delete"/>
+                     <attDef ident="cert" mode="delete"/>
+                     <attDef ident="type" mode="delete"/>
+                  </attList>
+               </elementSpec>
+               <elementSpec ident="pb" mode="change">
+                  <attList>
+                     <attDef ident="corresp" mode="delete"/>
+                     <attDef ident="cert" mode="delete"/>
+                     <attDef ident="type" mode="delete"/>
+                  </attList>
+               </elementSpec>
+               <elementSpec ident="author" mode="change">
+                  <attList>
+                     <attDef ident="corresp" mode="delete"/>
+                     <attDef ident="cert" mode="delete"/>
+                     <attDef ident="ref" mode="delete"/>
+                     <attDef ident="when" mode="delete"/>
+                  </attList>
+               </elementSpec>
+               <elementSpec ident="respStmt" mode="change">
+                  <attList>
+                     <attDef ident="corresp" mode="delete"/>
+                     <attDef ident="cert" mode="delete"/>
+                     <attDef ident="ref" mode="delete"/>
+                  </attList>
+               </elementSpec>
+               <elementSpec ident="resp" mode="change">
+                  <attList>
+                     <attDef ident="corresp" mode="delete"/>
+                     <attDef ident="cert" mode="delete"/>
+                     <attDef ident="ref" mode="delete"/>
+                     <attDef ident="when" mode="delete"/>
+                  </attList>
+               </elementSpec>
+               <elementSpec ident="title" mode="change">
+                  <attList>
+                     <attDef ident="level" mode="delete"/>
+                     <attDef ident="type" mode="change">
+                        <valList mode="add" type="closed">
+                           <valItem ident="short"/>
+                        </valList>
+                     </attDef>
+                     <attDef ident="corresp" mode="delete"/>
+                     <attDef ident="cert" mode="delete"/>
+                     <attDef ident="type" mode="change">
+                        <valList mode="add" type="closed">
+                           <valItem ident="short"/>
+                        </valList>
+                     </attDef>
+                     <attDef ident="ref" mode="delete"/>
+                     <attDef ident="when" mode="delete"/>
+                  </attList>
+               </elementSpec>
+               <elementSpec ident="publisher" mode="change">
+                  <attList>
+                     <attDef ident="corresp" mode="delete"/>
+                     <attDef ident="cert" mode="delete"/>
+                     <attDef ident="ref" mode="delete"/>
+                  </attList>
+               </elementSpec>
+               <elementSpec ident="textLang" mode="change">
+                  <attList>
+                     <attDef ident="mainLang" mode="delete"/>
+                     <attDef ident="otherLangs" mode="delete"/>
+                     <attDef ident="corresp" mode="delete"/>
+                     <attDef ident="cert" mode="delete"/>
+                  </attList>
+               </elementSpec>
+               <!--Checking module figures-->
+               <!--Checking module header-->
+               <moduleRef key="header"
+                  include="teiHeader fileDesc titleStmt extent publicationStmt idno sourceDesc encodingDesc profileDesc creation"/>
+               <elementSpec ident="teiHeader" mode="change">
+                  <attList>
+                     <attDef ident="corresp" mode="delete"/>
+                     <attDef ident="cert" mode="delete"/>
+                  </attList>
+               </elementSpec>
+               <elementSpec ident="fileDesc" mode="change">
+                  <attList>
+                     <attDef ident="corresp" mode="delete"/>
+                     <attDef ident="cert" mode="delete"/>
+                  </attList>
+               </elementSpec>
+               <elementSpec ident="titleStmt" mode="change">
+                  <attList>
+                     <attDef ident="corresp" mode="delete"/>
+                     <attDef ident="cert" mode="delete"/>
+                  </attList>
+               </elementSpec>
+               <elementSpec ident="extent" mode="change">
+                  <attList>
+                     <attDef ident="corresp" mode="delete"/>
+                     <attDef ident="cert" mode="delete"/>
+                  </attList>
+               </elementSpec>
+               <elementSpec ident="publicationStmt" mode="change">
+                  <attList>
+                     <attDef ident="corresp" mode="delete"/>
+                     <attDef ident="cert" mode="delete"/>
+                  </attList>
+               </elementSpec>
+               <elementSpec ident="idno" mode="change">
+                  <attList>
+                     <attDef ident="type" mode="delete"/>
+                     <attDef ident="corresp" mode="delete"/>
+                     <attDef ident="cert" mode="delete"/>
+                     <attDef ident="when" mode="delete"/>
+                     <attDef ident="type" mode="delete"/>
+                  </attList>
+               </elementSpec>
+               <elementSpec ident="sourceDesc" mode="change">
+                  <attList>
+                     <attDef ident="corresp" mode="delete"/>
+                     <attDef ident="cert" mode="delete"/>
+                     <attDef ident="default" mode="change">
+                        <valList mode="add" type="closed">
+                           <valItem ident="false"/>
+                        </valList>
+                     </attDef>
+                  </attList>
+               </elementSpec>
+               <elementSpec ident="encodingDesc" mode="change">
+                  <attList>
+                     <attDef ident="corresp" mode="delete"/>
+                     <attDef ident="cert" mode="delete"/>
+                  </attList>
+               </elementSpec>
+               <elementSpec ident="profileDesc" mode="change">
+                  <attList>
+                     <attDef ident="corresp" mode="delete"/>
+                     <attDef ident="cert" mode="delete"/>
+                  </attList>
+               </elementSpec>
+               <elementSpec ident="creation" mode="change">
+                  <attList>
+                     <attDef ident="corresp" mode="delete"/>
+                     <attDef ident="cert" mode="delete"/>
+                     <attDef ident="when" mode="delete"/>
+                  </attList>
+               </elementSpec>
+               <!--Checking module gaiji-->
+               <!--Checking module verse-->
+               <!--Checking module transcr-->
+               <!--Checking module linking-->
+
+               <!-- A ETE MODIFIE -->
+               <!-- DEFINITION DES VALEURS POSSIBLES POUR L'ATTRIBUT CORRESP -->
+               <classRef key="att.global.linking"/>
+               <classSpec ident="att.global.linking" type="atts" mode="change">
+                  <attList>
+                     <attDef ident="synch" mode="delete"/>
+                     <attDef ident="sameAs" mode="delete"/>
+                     <attDef ident="copyOf" mode="delete"/>
+                     <attDef ident="next" mode="delete"/>
+                     <attDef ident="prev" mode="delete"/>
+                     <attDef ident="exclude" mode="delete"/>
+                     <attDef ident="select" mode="delete"/>
+                     <attDef ident="corresp" mode="change">
+                        <desc>Renseigne le ou les types de variation qui portent sur le témoin identifié.</desc>
+                        <datatype minOccurs="0" maxOccurs="2">
+                           <dataRef key="teidata.pointer"/>
+                        </datatype>
+                        <valList mode="add" type="closed">
+                           <valItem ident="#orthographe"/>
+                           <valItem ident="#ponctuation"/>
+                           <valItem ident="#ordre"/>
+                           <valItem ident="#different"/>
+                           <valItem ident="#absence"/>
+                           <valItem ident="#sens"/>
+                           <valItem ident="#ajout"/>
+                        </valList>
+                     </attDef>
+                  </attList>
+               </classSpec>
+
+               <!-- A ETE MODIFIE -->
+               <!-- REGLE SCHEMATRON FAITE AVEC L'AIDE DES EXEMPLES-->
+               <classRef key="att.witnessed"/>
+               <classSpec type="atts" ident="att.witnessed" mode="change">
+                  <attList>
+                     <attDef ident="wit" mode="change">
+                        <gloss>Indique sur quel témoin porte la balise.</gloss>
+                        <datatype minOccurs="1" maxOccurs="3">
+                           <dataRef key="teidata.pointer"/>
+                        </datatype>
+                        <constraintSpec scheme="schematron" ident="witBien">
+                           <constraint xmlns:tei="&lien_tei;">
+                              <s:rule context="@wit">
+                                 <s:let name="wit" value="for $wit in tokenize(.,'\s') return $wit"/>
+                                 <s:assert test="every $ w in $wit satisfies substring-after($w,'#') = //tei:witness/@xml:id">
+                                    La valeur de @wit doit correspondre à un identifiant défini dans l'attribut @xml:id de &lt;witness&gt;/
+                                 </s:assert>
+                              </s:rule>
+                           </constraint>
+                        </constraintSpec>
+                     </attDef>
+                  </attList>
+               </classSpec>
+
+               <!--Checking module analysis-->
+               <classRef key="att.linguistic"/>
+               <classSpec ident="att.linguistic" type="atts" mode="change">
+                  <attList>
+                     <attDef ident="lemma" mode="delete"/>
+                     <attDef ident="lemmaRef" mode="delete"/>
+                     <attDef ident="pos" mode="delete"/>
+                     <attDef ident="msd" mode="delete"/>
+                     <attDef ident="join" mode="delete"/>
+                  </attList>
+               </classSpec>
+               <!--Checking module textstructure-->
+               <moduleRef key="textstructure" include="TEI text body docAuthor"/>
+               <elementSpec ident="TEI" mode="change">
+                  <attList>
+                     <attDef ident="version" mode="delete"/>
+                     <attDef ident="corresp" mode="delete"/>
+                     <attDef ident="cert" mode="delete"/>
+                     <attDef ident="type" mode="delete"/>
+                  </attList>
+               </elementSpec>
+               <elementSpec ident="text" mode="change">
+                  <attList>
+                     <attDef ident="corresp" mode="delete"/>
+                     <attDef ident="cert" mode="delete"/>
+                     <attDef ident="type" mode="delete"/>
+                  </attList>
+               </elementSpec>
+               <elementSpec ident="body" mode="change">
+                  <attList>
+                     <attDef ident="corresp" mode="delete"/>
+                     <attDef ident="cert" mode="delete"/>
+                  </attList>
+               </elementSpec>
+               <elementSpec ident="docAuthor" mode="change">
+                  <attList>
+                     <attDef ident="corresp" mode="delete"/>
+                     <attDef ident="cert" mode="delete"/>
+                     <attDef ident="ref" mode="delete"/>
+                  </attList>
+               </elementSpec>
+               <!--Checking module corpus-->
+               <moduleRef key="corpus" include="particDesc settingDesc"/>
+               <elementSpec ident="particDesc" mode="change">
+                  <attList>
+                     <attDef ident="corresp" mode="delete"/>
+                     <attDef ident="cert" mode="delete"/>
+                     <attDef ident="default" mode="change">
+                        <valList mode="add" type="closed">
+                           <valItem ident="false"/>
+                        </valList>
+                     </attDef>
+                  </attList>
+               </elementSpec>
+               <elementSpec ident="settingDesc" mode="change">
+                  <attList>
+                     <attDef ident="corresp" mode="delete"/>
+                     <attDef ident="cert" mode="delete"/>
+                     <attDef ident="default" mode="change">
+                        <valList mode="add" type="closed">
+                           <valItem ident="false"/>
+                        </valList>
+                     </attDef>
+                  </attList>
+               </elementSpec>
+            </schemaSpec>
+         </div1>
+      </body>
+   </text>
+</TEI>
